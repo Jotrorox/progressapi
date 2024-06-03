@@ -26,8 +26,8 @@
 
 ## :dart: About ##
 
-Progress API is a simple API written purely in kotlin, that aims to provide a simple way to get and/or embed Progress bars into anything.\
-The API generates images that resemble the given percentage count. In the future this Project will also aim to support multiple diffrent types of progress bars.\
+Progress API is a simple API written purely in kotlin, that aims to provide a simple way to get and/or embed Progress bars into anything. 
+The API generates images that resemble the given percentage count. In the future this Project will also aim to support multiple diffrent types of progress bars. 
 Now for the last part: Why? It is simple I just needed this for another project that I'm working on and because I just felt like it I made it it's own project. 
 
 ## :sparkles: Features ##
