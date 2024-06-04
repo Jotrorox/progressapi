@@ -1,5 +1,6 @@
-package com.jotrorox
+package com.jotrorox.progressapi
 
+import io.ktor.server.routing.*
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
@@ -42,5 +43,5 @@ fun saveImage(image: BufferedImage, path: String) {
 }
 
 fun main() {
-    println("Hello World!")
+
 }
