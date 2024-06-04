@@ -1,8 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.23"
     application
-
-    id("io.ktor.plugin") version "2.3.11"
 }
 
 group = "com.jotrorox"
@@ -12,14 +10,7 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // The Ktor server dependencies
-    implementation("io.ktor:ktor-server-core")
-    implementation("io.ktor:ktor-server-netty")
-
-    // The Logging framework
-    implementation("ch.qos.logback:logback-classic:1.5.6")
-}
+dependencies {}
 
 application {
     mainClass.set("com.jotrorox.progressapi.MainKt")

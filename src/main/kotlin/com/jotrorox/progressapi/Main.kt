@@ -2,6 +2,8 @@ package com.jotrorox.progressapi
 
 import java.awt.image.BufferedImage
 import java.io.File
+import java.nio.file.InvalidPathException
+import java.nio.file.Paths
 import javax.imageio.ImageIO
 
 const val cachePath = "./cache"
@@ -119,8 +121,13 @@ fun generateProgressBar(percentage: Int, width: Int, height: Int): BufferedImage
  * @param path The path where the image will be saved.
  */
 fun saveImage(image: BufferedImage, path: String) {
-    val file = File(path)
-    ImageIO.write(image, "png", file)
+    try {
+        val sanitizedPath = Paths.get(path).normalize().toString()
+        val file = File(sanitizedPath)
+        ImageIO.write(image, "png", file)
+    } catch (e: InvalidPathException) {
+        println("Invalid path: $path")
+    }
 }
 
 fun main() {
