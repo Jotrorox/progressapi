@@ -1,6 +1,5 @@
 package com.jotrorox.progressapi
 
-import io.ktor.server.routing.*
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
@@ -110,14 +109,14 @@ fun generateProgressBar(percentage: Int, width: Int, height: Int): BufferedImage
     return image
 }
 
+
 /**
- * Saves an image to a file.
+ * Saves a BufferedImage to a file.
  *
- * @param image The image to save.
- * @param path The path to save the image to.
- * @throws NullPointerException If the Path to the image is null.
- * @throws IllegalArgumentException If the image is null.
- * @throws IOException If an error during writing occurs.
+ * This function writes the given BufferedImage to a file at the specified path. The image is saved in PNG format.
+ *
+ * @param image The BufferedImage to save.
+ * @param path The path where the image will be saved.
  */
 fun saveImage(image: BufferedImage, path: String) {
     val file = File(path)
