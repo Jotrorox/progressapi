@@ -26,9 +26,9 @@
 
 ## :dart: About ##
 
-Progress API is a simple API written purely in kotlin, that aims to provide a simple way to get and/or embed Progress bars into anything. 
-The API generates images that resemble the given percentage count. In the future this Project will also aim to support multiple diffrent types of progress bars. 
-Now for the last part: Why? It is simple I just needed this for another project that I'm working on and because I just felt like it I made it it's own project. 
+Progress API is a simple API written purely in java, that aims to provide a simple way to get and/or embed Progress bars into anything. 
+The API generates images that resemble the given percentage count. In the future this Project will also aim to support multiple different types of progress bars. 
+Now for the last part: Why? It is simple I just needed this for another project that I'm working on and because I just felt like it, I made it it's own project. 
 
 ## :sparkles: Features ##
 
@@ -40,7 +40,7 @@ Now for the last part: Why? It is simple I just needed this for another project 
 
 ## :white_check_mark: Development Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and a JDK of your choice installed.
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com), [Maven](https://maven.apache.org/) and a JDK of your choice installed.
 
 ## :checkered_flag: Starting (Development Setup) ##
 
@@ -52,10 +52,7 @@ $ git clone https://github.com/Jotrorox/progressapi
 $ cd progressapi
 
 # Build the Project
-$ ./gradlew clean build
-
-# Package the project into a jar
-$ ./gradlew clean jar
+$ mvn clean package
 ```
 
 **If you encounter Problems just hit me up, I'm happy to help you get started**\
