@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
+const val cachePath = "./cache"
+
 /**
  * Object that manages a cache of progress bar images.
  *
@@ -55,7 +57,7 @@ object ProgressBarCache {
      * @param image The progress bar image to save.
      */
     private fun saveToDisk(key: String, image: BufferedImage) {
-        val file = File("/path/to/cache/$key.png")
+        val file = File("$cachePath/$key.png")
         ImageIO.write(image, "png", file)
     }
 
@@ -68,12 +70,8 @@ object ProgressBarCache {
      * @return The loaded progress bar image, or null if the file does not exist.
      */
     private fun loadFromDisk(key: String): BufferedImage? {
-        val file = File("/path/to/cache/$key.png")
-        return if (file.exists()) {
-            ImageIO.read(file)
-        } else {
-            null
-        }
+        val file = File("$cachePath/$key.png")
+        return ImageIO.read(file).takeIf { file.exists() }
     }
 }
 
