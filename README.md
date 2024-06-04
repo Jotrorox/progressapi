@@ -33,10 +33,10 @@ Now for the last part: Why? It is simple I just needed this for another project 
 ## :sparkles: Features ##
 
 :heavy_check_mark: Generating the base images\
-:clock1: Caching the Data\
+:heavy_check_mark: Caching the Data\
 :clock1: Exposing an api\
 :heavy_multiplication_x: Adding Docker Support\
-:heavy_multiplication_x: Allowing diffrent Progressbars
+:heavy_multiplication_x: Allowing different Progressbars
 
 ## :white_check_mark: Development Requirements ##
 
@@ -56,9 +56,6 @@ $ ./gradlew clean build
 
 # Package the project into a jar
 $ ./gradlew clean jar
-
-# Test the project
-$ ./gradlew clean test
 ```
 
 **If you encounter Problems just hit me up, I'm happy to help you get started**\
