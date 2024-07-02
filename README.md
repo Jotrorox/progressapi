@@ -26,21 +26,20 @@
 
 ## :dart: About ##
 
-Progress API is a simple API written purely in java, that aims to provide a simple way to get and/or embed Progress bars into anything. 
+Progress API is a simple API, that aims to provide a simple way to get and/or embed Progress bars into anything. 
 The API generates images that resemble the given percentage count. In the future this Project will also aim to support multiple different types of progress bars. 
 Now for the last part: Why? It is simple I just needed this for another project that I'm working on and because I just felt like it, I made it it's own project. 
 
 ## :sparkles: Features ##
 
 :heavy_check_mark: Generating the base images\
-:heavy_check_mark: Caching the Data\
-:clock1: Exposing an api\
+:heavy_check_mark: Exposing an api\
 :heavy_multiplication_x: Adding Docker Support\
 :heavy_multiplication_x: Allowing different Progressbars
 
 ## :white_check_mark: Development Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com), [Maven](https://maven.apache.org/) and a JDK of your choice installed.
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [NodeJS](https://nodejs.org/en) installed.
 
 ## :checkered_flag: Starting (Development Setup) ##
 
@@ -51,8 +50,14 @@ $ git clone https://github.com/Jotrorox/progressapi
 # Go into that directory
 $ cd progressapi
 
-# Build the Project
-$ mvn clean package
+# Install all dependencies
+$ npm i
+
+# Run the Project
+$ npm run start 
+
+# Run the Project in dev mode
+$ npm run dev
 ```
 
 **If you encounter Problems just hit me up, I'm happy to help you get started**\
