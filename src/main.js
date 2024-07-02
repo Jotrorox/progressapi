@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 3030;
 
 app.get('/', (req, res) => {
     const percentage = parseInt(req.query.percentage || '0', 10);
@@ -29,6 +28,7 @@ function generateProgressBarSVG(percentage, height, width, fillColor, emptyColor
     return svg;
 }
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}/`);
 });
