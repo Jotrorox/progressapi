@@ -34,7 +34,7 @@ Now for the last part: Why? It is simple I just needed this for another project 
 
 :heavy_check_mark: Generating the base images\
 :heavy_check_mark: Exposing an api\
-:heavy_multiplication_x: Adding Docker Support\
+:heavy_check_mark: Adding Docker Support\
 :heavy_multiplication_x: Allowing different Progressbars
 
 ## :white_check_mark: Development Requirements ##
@@ -65,7 +65,14 @@ $ npm run dev
 
 ## :dash: Getting Started ##
 
-Docker support has't been added yet so you have to rely on the Development setup
+I will explain the Docker way here so please ensure you have Docker installed!
+```bash
+# Pull the project
+$ docker pull jotrorox/progressapi
+
+# Start the bot
+$ docker run -e PORT=<yourPort> jotrorox/progressapi
+```
 
 ## :raised_hands: Contributing ##
 
