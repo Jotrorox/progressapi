@@ -1,0 +1,7 @@
+version: '3'
+services:
+  progressapi:
+    build: .
+    ports:
+      - "8080:80"
+    restart: always

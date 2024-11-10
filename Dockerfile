@@ -1,17 +1,11 @@
-# Use the Node.js image as base
-FROM node:latest
+# Use an official PHP image with Apache
+FROM php:8.0-apache
 
-# Set working directory
-WORKDIR /app
+# Copy the application code to the container
+COPY src/ /var/www/html/
 
-# Copy package.json and package-lock.json to container
-COPY package*.json ./
+# Grant permissions (if needed)
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
-COPY . .
-
-# Start the application
-CMD ["npm", "run", "start"]
+# Expose port 80 for web traffic
+EXPOSE 80
