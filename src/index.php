@@ -1,57 +1,109 @@
-<?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-header('Access-Control-Allow-Headers: Content-Type');
-header('X-Content-Type-Options: nosniff');
-header('X-Frame-Options: SAMEORIGIN');
-header('X-XSS-Protection: 1; mode=block');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .preview {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Progress Bar API Demo</h1>
+    
+    <div class="form-group">
+        <label for="type">Type:</label>
+        <select id="type">
+            <option value="default">Default</option>
+            <option value="striped">Striped</option>
+            <option value="animated">Animated</option>
+        </select>
+    </div>
 
-// Default values
-$defaultType = 'default';
-$defaultProgress = 50;
-$defaultColor = '#4caf50';
-$defaultHeight = 20;
+    <div class="form-group">
+        <label for="progress">Progress (0-100):</label>
+        <input type="number" id="progress" value="50" min="0" max="100">
+    </div>
 
-$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
-$progress = filter_input(INPUT_GET, 'progress', FILTER_VALIDATE_INT, array("options" => array("default" => $defaultProgress, "min_range" => 0, "max_range" => 100)));
-$color = filter_input(INPUT_GET, 'color', FILTER_SANITIZE_STRING);
-$height = filter_input(INPUT_GET, 'height', FILTER_VALIDATE_INT, array("options" => array("default" => $defaultHeight)));
+    <div class="form-group">
+        <label for="color">Color:</label>
+        <input type="color" id="color" value="#4caf50">
+    </div>
 
-// If values are not set or invalid, use default values
-$type = $type ?: $defaultType;
-$color = $color ?: $defaultColor;
+    <div class="form-group">
+        <label for="height">Height (px):</label>
+        <input type="number" id="height" value="20" min="1">
+    </div>
 
-// Define progress bar styles
-$progressBars = [
-    'default' => function($progress, $color, $height) {
-        return "<div style='width: 100%; background-color: #ddd;'>
-                    <div style='width: {$progress}%; background-color: {$color}; height: {$height}px;'></div>
-                </div>";
-    },
-    'striped' => function($progress, $color, $height) {
-        return "<div style='width: 100%; background-color: #ddd;'>
-                    <div style='width: {$progress}%; background-color: {$color}; height: {$height}px;
-                    background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);'>
-                    </div>
-                </div>";
-    },
-    'animated' => function($progress, $color, $height) {
-        return "<div style='width: 100%; background-color: #ddd;'>
-                    <div style='width: {$progress}%; background-color: {$color}; height: {$height}px; transition: width 2s ease;'></div>
-                </div>";
-    },
-];
+    <button onclick="updateProgressBar()">Generate Progress Bar</button>
 
-// Set the correct progress bar type
-$progressBar = isset($progressBars[$type]) ? $progressBars[$type] : $progressBars['default'];
+    <div class="preview">
+        <h3>Preview:</h3>
+        <div id="preview-container"></div>
+    </div>
 
-// Return the progress bar as JSON
-echo json_encode([
-    'type' => $type,
-    'progress' => $progress,
-    'color' => $color,
-    'height' => $height,
-    'html' => $progressBar($progress, $color, (int)$height)
-]);
-?>
+    <div class="api-url">
+        <h3>API URL:</h3>
+        <div class="code" id="api-url"></div>
+    </div>
+
+    <script>
+        function updateProgressBar() {
+            const type = document.getElementById('type').value;
+            const progress = document.getElementById('progress').value;
+            const color = document.getElementById('color').value;
+            const height = document.getElementById('height').value;
+
+            const apiUrl = `/api/progress-bar.php?type=${type}&progress=${progress}&color=${encodeURIComponent(color)}&height=${height}`;
+            
+            // Update API URL display
+            document.getElementById('api-url').textContent = apiUrl;
+
+            // Fetch and display progress bar
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('preview-container').innerHTML = data.html;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Initial load
+        updateProgressBar();
+    </script>
+</body>
+</html>
