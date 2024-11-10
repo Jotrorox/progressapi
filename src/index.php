@@ -3,12 +3,14 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: Content-Type');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: SAMEORIGIN');
+header('X-XSS-Protection: 1; mode=block');
 
-$type = isset($_GET['type']) ? $_GET['type'] : 'default';  // Progress bar type from query param
-$progress = isset($_GET['progress']) ? $_GET['progress'] : 50;  // Progress value from query param (0-100)
-$progress = min(100, max(0, (int)$progress));  // Ensure progress is between 0-100
-$color = isset($_GET['color']) ? $_GET['color'] : '#4caf50';  // Progress bar color from query param (default to green)
-$height = isset($_GET['height']) ? $_GET['height'] : 20;  // Progress bar height from query param (default to 20px)
+$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+$progress = filter_input(INPUT_GET, 'progress', FILTER_VALIDATE_INT, array("options" => array("default" => 50, "min_range" => 0, "max_range" => 100)));
+$color = filter_input(INPUT_GET, 'color', FILTER_SANITIZE_STRING);
+$height = filter_input(INPUT_GET, 'height', FILTER_VALIDATE_INT, array("options" => array("default" => 20)));
 
 // Define progress bar styles
 $progressBars = [

@@ -5,3 +5,9 @@ services:
     ports:
       - "8080:80"
     restart: always
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
