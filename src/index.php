@@ -24,13 +24,13 @@ $progressBars = [
     },
     'animated' => function($progress) {
         return "<div style='width: 100%; background-color: #ddd;'>
-                    <div style='width: {$progress}%; background-color: #4caf50; height: 20px; transition: width 2s ease; width: {$progress}%;'></div>
+                    <div style='width: {$progress}%; background-color: #4caf50; height: 20px; transition: width 2s ease;'></div>
                 </div>";
     },
 ];
 
 // Set the correct progress bar type
-$progressBar = $progressBars[$type] ?? $progressBars['default'];
+$progressBar = isset($progressBars[$type]) ? $progressBars[$type] : $progressBars['default'];
 
 // Return the progress bar as JSON
 echo json_encode([
