@@ -20,10 +20,6 @@ $color = filter_input(INPUT_GET, 'color', FILTER_SANITIZE_STRING);
 $height = filter_input(INPUT_GET, 'height', FILTER_VALIDATE_INT, array("options" => array("default" => $defaultHeight)));
 $width = filter_input(INPUT_GET, 'width', FILTER_VALIDATE_INT, array("options" => array("default" => $defaultWidth, "min_range" => 1)));
 
-// If values are not set or invalid, use default values
-$type = $type ?: $defaultType;
-$color = $color ?: $defaultColor;
-
 // Define progress bar styles
 $progressBars = [
     'default' => function($progress, $color, $height, $width) {
@@ -40,9 +36,30 @@ $progressBars = [
     },
     'animated' => function($progress, $color, $height, $width) {
         return "<div style='width: {$width}px; background-color: #ddd;'>
-                    <div style='width: {$progress}%; background-color: {$color}; height: {$height}px; transition: width 2s ease;'></div>
-                </div>";
+                    <div style='width: {$progress}%; background-color: {$color}; height: {$height}px; 
+                        background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+                        background-size: 40px 40px;
+                        transition: width 0.6s ease-in-out;
+                        animation: progress-bar-stripes 1s linear infinite, glow 1.5s ease-in-out infinite alternate;'>
+                    </div>
+                </div>
+                <style>
+                @keyframes progress-bar-stripes {
+                    from { background-position: 40px 0; }
+                    to { background-position: 0 0; }
+                }
+                @keyframes glow {
+                    from { filter: brightness(95%); }
+                    to { filter: brightness(105%); }
+                }
+                </style>";
     },
+    'rounded' => function($progress, $color, $height, $width) {
+        $radius = $height / 2;
+        return "<div style='width: {$width}px; background-color: #ddd; border-radius: {$radius}px;'>
+                    <div style='width: {$progress}%; background-color: {$color}; height: {$height}px; border-radius: {$radius}px;'></div>
+                </div>";
+    }
 ];
 
 // Set the correct progress bar type

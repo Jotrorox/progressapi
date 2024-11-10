@@ -361,6 +361,7 @@
                     <option value="default">Default</option>
                     <option value="striped">Striped</option>
                     <option value="animated">Animated</option>
+                    <option value="rounded">Rounded</option>
                 </select>
             </div>
 
@@ -481,8 +482,8 @@ progress_bar_html = data['html']`;
             const color = document.getElementById('color').value;
             const height = document.getElementById('height').value;
             const width = document.getElementById('width').value;
-
-            const apiUrl = `/api/progress-bar.php?type=${type}&progress=${progress}&color=${encodeURIComponent(color)}&height=${height}&width=${width}`;
+            
+            let apiUrl = `/api/progress-bar.php?type=${type}&progress=${progress}&color=${encodeURIComponent(color)}&height=${height}&width=${width}`;
             
             // Update API URL display
             document.getElementById('api-url').textContent = apiUrl;
