@@ -23,18 +23,18 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 16px;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .container {
             background: white;
-            padding: clamp(20px, 5vw, 40px);
-            border-radius: 16px;
+            padding: clamp(16px, 3vw, 24px);
+            border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             animation: fadeIn 0.5s ease-out;
         }
@@ -45,7 +45,7 @@
         }
 
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             animation: slideIn 0.5s ease-out;
         }
 
@@ -56,27 +56,27 @@
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             font-weight: 500;
             color: var(--text-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         select, input:not([type="color"]) {
             width: 100%;
-            padding: 10px 12px;
+            padding: 8px 10px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
             transition: all 0.2s ease;
             background: white;
         }
 
         input[type="color"] {
             width: 100%;
-            height: 40px;
+            height: 36px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 2px;
         }
 
@@ -87,10 +87,10 @@
         }
 
         .preview {
-            margin: 24px 0;
-            padding: 24px;
+            margin: 16px 0;
+            padding: 16px;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 8px;
             background: white;
             transition: all 0.3s ease;
         }
@@ -103,10 +103,10 @@
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 8px 16px;
             cursor: pointer;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
             font-weight: 500;
             transition: all 0.2s ease;
         }
@@ -117,33 +117,39 @@
         }
 
         .tab-container {
-            margin-top: 32px;
+            margin-top: 24px;
         }
 
         .tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 6px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
 
         .tab {
-            padding: 10px 20px;
+            padding: 6px 14px;
             cursor: pointer;
-            background: #f3f4f6;
-            border: none;
-            border-radius: 8px;
+            background: white;
+            border: 1px solid #dde1e7;
+            border-radius: 6px;
             transition: all 0.2s ease;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: #4b5563;
+            font-weight: 500;
         }
 
         .tab.active {
             background: var(--primary-color);
             color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
         }
 
         .tab:hover:not(.active) {
-            background: #e5e7eb;
+            background: #f8fafc;
+            border-color: #c7d2fe;
+            color: var(--primary-color);
         }
 
         .tab-content {
@@ -166,29 +172,33 @@
 
         h1, h3 {
             color: var(--text-color);
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         h1 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+        }
+
+        h3 {
+            font-size: 1.1rem;
         }
 
         .code {
             position: relative;
             border-radius: 8px;
-            margin: 16px 0;
+            margin: 12px 0;
         }
 
         .copy-button {
             position: absolute;
             top: 8px;
             right: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.3);
             border: none;
-            padding: 6px 12px;
+            padding: 4px 8px;
             border-radius: 4px;
             color: white;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             opacity: 0;
             transition: opacity 0.2s ease;
         }
@@ -199,25 +209,102 @@
 
         @media (max-width: 640px) {
             body {
-                padding: 12px;
+                padding: 8px;
             }
 
             .container {
-                padding: 20px;
+                padding: 16px;
             }
 
-            .tabs {
-                gap: 6px;
+            .form-grid {
+                grid-template-columns: 1fr;
             }
 
             .tab {
-                padding: 8px 16px;
-                font-size: 0.9rem;
+                padding: 6px 12px;
+                font-size: 0.85rem;
             }
 
             .copy-button {
                 opacity: 1;
             }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);  /* 5 columns by default */
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 0;  /* Remove bottom margin since we're using grid gap */
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 900px) {
+            .form-grid {
+                grid-template-columns: repeat(3, 1fr);  /* 3 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);  /* 2 columns on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr;  /* Stack on very small screens */
+            }
+        }
+
+        /* Alternative table layout */
+        .form-table {
+            display: table;
+            width: 100%;
+            border-spacing: 0 12px;
+        }
+
+        .form-row {
+            display: table-row;
+        }
+
+        .form-cell {
+            display: table-cell;
+            padding-right: 12px;
+            vertical-align: top;
+        }
+
+        .form-cell:last-child {
+            padding-right: 0;
+        }
+
+        @media (max-width: 480px) {
+            .form-table {
+                display: block;
+            }
+            
+            .form-row {
+                display: block;
+                margin-bottom: 12px;
+            }
+            
+            .form-cell {
+                display: block;
+                padding-right: 0;
+                margin-bottom: 12px;
+            }
+        }
+
+        /* Make inputs more compact */
+        select, input:not([type="color"]) {
+            padding: 6px 8px;
+        }
+
+        input[type="color"] {
+            height: 32px;
         }
     </style>
 </head>
@@ -225,33 +312,35 @@
     <div class="container">
         <h1>Progress Bar API Demo</h1>
         
-        <div class="form-group">
-            <label for="type">Type:</label>
-            <select id="type">
-                <option value="default">Default</option>
-                <option value="striped">Striped</option>
-                <option value="animated">Animated</option>
-            </select>
-        </div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select id="type">
+                    <option value="default">Default</option>
+                    <option value="striped">Striped</option>
+                    <option value="animated">Animated</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="progress">Progress (0-100):</label>
-            <input type="number" id="progress" value="50" min="0" max="100">
-        </div>
+            <div class="form-group">
+                <label for="progress">Progress:</label>
+                <input type="number" id="progress" value="50" min="0" max="100">
+            </div>
 
-        <div class="form-group">
-            <label for="color">Color:</label>
-            <input type="color" id="color" value="#4caf50">
-        </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="color" id="color" value="#4caf50">
+            </div>
 
-        <div class="form-group">
-            <label for="height">Height (px):</label>
-            <input type="number" id="height" value="20" min="1">
-        </div>
+            <div class="form-group">
+                <label for="height">Height:</label>
+                <input type="number" id="height" value="20" min="1">
+            </div>
 
-        <div class="form-group">
-            <label for="width">Width (px):</label>
-            <input type="number" id="width" value="300" min="1">
+            <div class="form-group">
+                <label for="width">Width:</label>
+                <input type="number" id="width" value="300" min="1">
+            </div>
         </div>
 
         <button onclick="updateProgressBar()">Generate Progress Bar</button>
