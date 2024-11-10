@@ -13,6 +13,16 @@
             --bg-color: #f9fafb;
             --text-color: #1f2937;
             --border-color: #e5e7eb;
+            --container-bg: white;
+            --preview-bg: white;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --text-color: #f3f4f6;
+            --border-color: #374151;
+            --container-bg: #1f2937;
+            --preview-bg: #374151;
         }
 
         * {
@@ -32,7 +42,7 @@
         }
 
         .container {
-            background: white;
+            background: var(--container-bg);
             padding: clamp(16px, 3vw, 24px);
             border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -91,7 +101,7 @@
             padding: 16px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            background: white;
+            background: var(--preview-bg);
             transition: all 0.3s ease;
         }
 
@@ -306,10 +316,42 @@
         input[type="color"] {
             height: 32px;
         }
+
+        .theme-toggle {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+            .theme-toggle {
+                position: static;
+                margin-bottom: 16px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Dark Mode</span>
+        </button>
         <h1>Progress Bar API Demo</h1>
         
         <div class="form-grid">
@@ -464,6 +506,37 @@ progress_bar_html = data['html']`;
 
         // Initial load
         updateProgressBar();
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            
+            // Update button content
+            const button = document.querySelector('.theme-toggle');
+            const icon = newTheme === 'dark' ? '🌙' : '☀️';
+            const text = newTheme === 'dark' ? 'Dark Mode' : 'Light Mode';
+            button.innerHTML = `<span class="theme-icon">${icon}</span><span class="theme-text">${text}</span>`;
+            
+            // Save preference
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Initialize theme from localStorage
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const button = document.querySelector('.theme-toggle');
+            const icon = savedTheme === 'dark' ? '🌙' : '☀️';
+            const text = savedTheme === 'dark' ? 'Dark Mode' : 'Light Mode';
+            button.innerHTML = `<span class="theme-icon">${icon}</span><span class="theme-text">${text}</span>`;
+        }
+
+        // Call initializeTheme when the page loads
+        document.addEventListener('DOMContentLoaded', initializeTheme);
     </script>
 </body>
 </html>
