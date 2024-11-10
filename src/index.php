@@ -7,10 +7,20 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: SAMEORIGIN');
 header('X-XSS-Protection: 1; mode=block');
 
+// Default values
+$defaultType = 'default';
+$defaultProgress = 50;
+$defaultColor = '#4caf50';
+$defaultHeight = 20;
+
 $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
-$progress = filter_input(INPUT_GET, 'progress', FILTER_VALIDATE_INT, array("options" => array("default" => 50, "min_range" => 0, "max_range" => 100)));
+$progress = filter_input(INPUT_GET, 'progress', FILTER_VALIDATE_INT, array("options" => array("default" => $defaultProgress, "min_range" => 0, "max_range" => 100)));
 $color = filter_input(INPUT_GET, 'color', FILTER_SANITIZE_STRING);
-$height = filter_input(INPUT_GET, 'height', FILTER_VALIDATE_INT, array("options" => array("default" => 20)));
+$height = filter_input(INPUT_GET, 'height', FILTER_VALIDATE_INT, array("options" => array("default" => $defaultHeight)));
+
+// If values are not set or invalid, use default values
+$type = $type ?: $defaultType;
+$color = $color ?: $defaultColor;
 
 // Define progress bar styles
 $progressBars = [
@@ -44,3 +54,4 @@ echo json_encode([
     'height' => $height,
     'html' => $progressBar($progress, $color, (int)$height)
 ]);
+?>
