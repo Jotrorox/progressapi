@@ -69,6 +69,11 @@
         <input type="number" id="height" value="20" min="1">
     </div>
 
+    <div class="form-group">
+        <label for="width">Width (px):</label>
+        <input type="number" id="width" value="300" min="1">
+    </div>
+
     <button onclick="updateProgressBar()">Generate Progress Bar</button>
 
     <div class="preview">
@@ -87,8 +92,9 @@
             const progress = document.getElementById('progress').value;
             const color = document.getElementById('color').value;
             const height = document.getElementById('height').value;
+            const width = document.getElementById('width').value;
 
-            const apiUrl = `/api/progress-bar.php?type=${type}&progress=${progress}&color=${encodeURIComponent(color)}&height=${height}`;
+            const apiUrl = `/api/progress-bar.php?type=${type}&progress=${progress}&color=${encodeURIComponent(color)}&height=${height}&width=${width}`;
             
             // Update API URL display
             document.getElementById('api-url').textContent = apiUrl;
