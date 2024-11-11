@@ -35,11 +35,11 @@ Now for the last part: Why? It is simple I just needed this for another project 
 :heavy_check_mark: Generating the base images\
 :heavy_check_mark: Exposing an api\
 :heavy_check_mark: Adding Docker Support\
-:heavy_multiplication_x: Allowing different Progressbars
+:heavy_check_mark: Allowing different Progressbars
 
 ## :white_check_mark: Development Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [NodeJS](https://nodejs.org/en) installed.
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Docker](https://docker.com) installed.
 
 ## :checkered_flag: Starting (Development Setup) ##
 
@@ -50,14 +50,11 @@ $ git clone https://github.com/Jotrorox/progressapi
 # Go into that directory
 $ cd progressapi
 
-# Install all dependencies
-$ npm i
+# Build the Docker Image
+$ docker-compose build
 
-# Run the Project
-$ npm run start 
-
-# Run the Project in dev mode
-$ npm run dev
+# Run the container
+$ docke-compose up -d 
 ```
 
 **If you encounter Problems just hit me up, I'm happy to help you get started**\
@@ -71,7 +68,7 @@ I will explain the Docker way here so please ensure you have Docker installed!
 $ docker pull jotrorox/progressapi
 
 # Start the bot
-$ docker run -e PORT=<yourPort> jotrorox/progressapi
+$ docker run jotrorox/progressapi
 ```
 
 ## :raised_hands: Contributing ##
